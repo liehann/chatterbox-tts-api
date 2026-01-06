@@ -42,19 +42,19 @@ services:
       - NVIDIA_DRIVER_CAPABILITIES=compute,utility
     volumes:
       # Mount voice sample file (optional)
-      - ${VOICE_SAMPLE_HOST_PATH:-../voice-sample.mp3}:/app/voice-sample.mp3:ro
+      - ../voice-sample.mp3:/app/voice-sample.mp3:ro
 
       # Mount model cache for persistence
-      - chatterbox-models:${MODEL_CACHE_DIR:-/cache}
+      - chatterbox-models:-/cache
 
       # Mount voice library for persistence
-      - chatterbox-voices:${VOICE_LIBRARY_DIR:-/voices}
+      - chatterbox-voices:-/voices
 
       # Mount long text data for persistence
-      - chatterbox-longtext-data:${LONG_TEXT_DATA_DIR:-/data/long_text_jobs}
+      - chatterbox-longtext-data:-/data/long_text_jobs
 
       # Optional: Mount custom voice samples directory (legacy)
-      - ${VOICE_SAMPLES_DIR:-../voice-samples}:/app/voice-samples:ro
+      - -../voice-samples:/app/voice-samples:ro
 
     # GPU support (enabled by default for this compose file)
     deploy:
